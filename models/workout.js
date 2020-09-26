@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const transactionSchema = new Schema({
+const workoutSchema = new Schema({
     day: {
         type: Date,
         default: function () {
@@ -34,10 +34,23 @@ const transactionSchema = new Schema({
         }
 
     ]
+    
+},
+{
+    toJSON: {
+        virtuals: true
+    }
 });
 
-const Transaction = mongoose.model("Transaction", transactionSchema);
+// code from Trevor Otterson for total duration
+workoutSchema.virtual('totalDuration').get(function () {
+    return this.exercises.reduce((total, exercise) => {
+        return total + exercise.duration;
+    }, 0);
+});
 
-module.exports = Transaction;
+const Workout = mongoose.model("workout", workoutSchema);
+
+module.exports = Workout;
 
 

@@ -1,1 +1,4 @@
-# Workout-Tracker---Assignment-12
+# workouts-Tracker---Assignment-12
+
+
+Pretty straight forward.
